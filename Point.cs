@@ -8,11 +8,11 @@ namespace Snake
 {
     class Point
     {
-        private int X { get; }
-        private int Y { get; }
-        private char Sym { get; }
+        private int X { get; set; }
+        private int Y { get; set; }
+        private char Sym { get; set; }
 
-        public Point() { }
+        //public Point() { }
         public Point(int x, int y, char sym)
         {
             X = x;
@@ -26,15 +26,39 @@ namespace Snake
             Sym = point.Sym;
         }
 
-        public void Move(int distance, Direction direction)
-        {
-
-        }
-
-        public void Draw()
+        public void DrawPoint()
         {
             Console.SetCursorPosition(X,Y);
             Console.WriteLine(Sym);
+        }
+
+        public void RemovePoint()
+        {
+            Sym = ' ';
+            DrawPoint();
+        }
+
+        public void MovePoint(int offset, Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Right:
+                    X += offset;
+                    break;
+                case Direction.Left:
+                    X -= offset;
+                    break;
+                case Direction.Up:
+                    Y -= offset;
+                    break;
+                case Direction.Down:
+                    Y += offset;
+                    break;
+            }
+        }
+        public override string ToString()
+        {
+            return X + ", " + Y + ", " + Sym;
         }
     }
 }

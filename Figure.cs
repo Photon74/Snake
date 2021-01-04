@@ -10,11 +10,11 @@ namespace Snake
     {
         protected List<Point> pointsList;
 
-        public void DrawPoints()
+        public void Draw()
         {
             foreach (Point point in pointsList)
             {
-                point.Draw();
+                point.DrawPoint();
             }
         }
 
