@@ -9,7 +9,6 @@ namespace Snake
     class Figure
     {
         protected List<Point> pointsList;
-
         public void Draw()
         {
             foreach (Point point in pointsList)
@@ -17,6 +16,5 @@ namespace Snake
                 point.DrawPoint();
             }
         }
-
     }
 }

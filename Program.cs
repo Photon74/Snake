@@ -11,7 +11,15 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            DrawInterface();
+            GameField gameField = new GameField();
+            gameField.DrawInterface();
+
+            Food food = new Food(gameField.GameFieldWidth, gameField.GameFieldHeigth);
+            food.DrawFood();
+            food.DrawFood();
+            food.DrawFood();
+            food.DrawFood();
+            food.DrawFood();
 
             Point point = new Point(4, 5, '*');
             Snake snake = new Snake(point, 4, Direction.Right);
@@ -37,23 +45,6 @@ namespace Snake
                 Thread.Sleep(300);
                 snake.Move();
             }
-        }
-
-        public static void DrawInterface()
-        {
-            Console.SetWindowSize(80, 26);
-            Console.SetBufferSize(80, 26);
-            Console.CursorVisible = false;
-
-
-            HorizontLine upLine = new HorizontLine(0, 78, 0, '+');
-            HorizontLine downLine = new HorizontLine(0, 78, 24, '+');
-            VerticalLine leftLine = new VerticalLine(0, 24, 0, '+');
-            VerticalLine rightLine = new VerticalLine(0, 24, 78, '+');
-            upLine.Draw();
-            downLine.Draw();
-            leftLine.Draw();
-            rightLine.Draw();
         }
     }
 }

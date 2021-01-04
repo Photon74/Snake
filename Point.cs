@@ -12,7 +12,7 @@ namespace Snake
         private int Y { get; set; }
         private char Sym { get; set; }
 
-        //public Point() { }
+        public Point() { }
         public Point(int x, int y, char sym)
         {
             X = x;
