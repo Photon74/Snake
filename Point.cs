@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Point
+    class Point // точка
     {
-        private int X { get; set; }
-        private int Y { get; set; }
-        private char Sym { get; set; }
+        public int X { get; private set; } // координата х точки
+        public int Y { get; private set; } // координата у точки
+        private char Sym { get; set; } // символ, рисующий точку
 
         public Point() { }
         public Point(int x, int y, char sym)
@@ -56,6 +56,12 @@ namespace Snake
                     break;
             }
         }
+
+        public bool IsPointsCoincide(Point point) // Проверка на совпадение точек
+        {
+            return point.X == X && point.Y == Y;
+        }
+
         public override string ToString()
         {
             return X + ", " + Y + ", " + Sym;

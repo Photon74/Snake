@@ -14,17 +14,20 @@ namespace Snake
         private readonly Random random = new Random();
         private Point food;
 
+        public int X { get; private set; }
+        public int Y { get; private set; }
+
         public Food(int gameFieldWidth, int gameFieldHeigth)
         {
             this.gameFieldWidth = gameFieldWidth;
             this.gameFieldHeigth = gameFieldHeigth;
         }
 
-        public void DrawFood()
+        public void CreateNewFood()
         {
-            int x = random.Next(2, gameFieldWidth);
-            int y = random.Next(2, gameFieldHeigth);
-            food = new Point(x, y, '$');
+            X = random.Next(2, gameFieldWidth);
+            Y = random.Next(2, gameFieldHeigth);
+            food = new Point(X, Y, '$');
             food.DrawPoint();
         }
     } 

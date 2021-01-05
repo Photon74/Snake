@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Figure
+    class Figure : Point
     {
         protected List<Point> pointsList;
         public void Draw()
@@ -15,6 +15,26 @@ namespace Snake
             {
                 point.DrawPoint();
             }
+        }
+
+        internal bool IsHitedBy(Figure figure)
+        {
+            foreach (Point point in pointsList)
+            {
+                if (figure.IsHitedBy(point)) return true;
+            }
+
+            return false;
+        }
+
+        private bool IsHitedBy(Point head)
+        {
+            foreach (Point point in pointsList)
+            {
+                if (point.IsPointsCoincide(head)) return true;
+            }
+
+            return false;
         }
     }
 }

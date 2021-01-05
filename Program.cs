@@ -12,38 +12,33 @@ namespace Snake
         static void Main(string[] args)
         {
             GameField gameField = new GameField();
-            gameField.DrawInterface();
+            gameField.DrawGameField();
 
             Food food = new Food(gameField.GameFieldWidth, gameField.GameFieldHeigth);
-            food.DrawFood();
-            food.DrawFood();
-            food.DrawFood();
-            food.DrawFood();
-            food.DrawFood();
+            food.CreateNewFood();
 
             Point point = new Point(4, 5, '*');
             Snake snake = new Snake(point, 4, Direction.Right);
             snake.Draw();
+            
 
             while (true)
             {
+                if (snake.IsHitItself() || gameField.IsHitedBy(snake)) break;
+                if (snake.IsEating(food))
+                {
+                    food.CreateNewFood();
+                }
+                else
+                {
+                    snake.Move();
+                }
                 if (Console.KeyAvailable)
                 {
                     var key = Console.ReadKey();
-                    switch (key.Key)
-                    {
-                        case ConsoleKey.A: snake.direction = Direction.Left;
-                            break;
-                        case ConsoleKey.D: snake.direction = Direction.Right;
-                            break;
-                        case ConsoleKey.W: snake.direction = Direction.Up;
-                            break;
-                        case ConsoleKey.S: snake.direction = Direction.Down;
-                            break;
-                    }
+                    snake.GetMovingDirection(key.Key);
                 }
                 Thread.Sleep(300);
-                snake.Move();
             }
         }
     }
