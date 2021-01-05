@@ -12,13 +12,14 @@ namespace Snake
         public int Y { get; private set; } // координата у точки
         private char Sym { get; set; } // символ, рисующий точку
 
-        public Point() { }
+        protected Point() { }
         public Point(int x, int y, char sym)
         {
             X = x;
             Y = y;
             Sym = sym;
         }
+
         public Point(Point point)
         {
             X = point.X;
@@ -26,19 +27,19 @@ namespace Snake
             Sym = point.Sym;
         }
 
-        public void DrawPoint()
+        internal void DrawPoint()
         {
             Console.SetCursorPosition(X,Y);
             Console.WriteLine(Sym);
         }
 
-        public void RemovePoint()
+        internal void RemovePoint()
         {
             Sym = ' ';
             DrawPoint();
         }
 
-        public void MovePoint(int offset, Direction direction)
+        internal void MovePoint(int offset, Direction direction)
         {
             switch (direction)
             {
@@ -57,14 +58,9 @@ namespace Snake
             }
         }
 
-        public bool IsPointsCoincide(Point point) // Проверка на совпадение точек
+        internal bool IsCoincide(Point point) // Проверка на совпадение двух точек
         {
             return point.X == X && point.Y == Y;
-        }
-
-        public override string ToString()
-        {
-            return X + ", " + Y + ", " + Sym;
         }
     }
 }

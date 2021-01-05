@@ -9,6 +9,7 @@ namespace Snake
     class Figure : Point
     {
         protected List<Point> pointsList;
+
         public void Draw()
         {
             foreach (Point point in pointsList)
@@ -17,24 +18,14 @@ namespace Snake
             }
         }
 
-        internal bool IsHitedBy(Figure figure)
+        internal bool IsHittedBy(Figure figure)
         {
-            foreach (Point point in pointsList)
-            {
-                if (figure.IsHitedBy(point)) return true;
-            }
-
-            return false;
+            return pointsList.Any(figure.IsHittedBy);
         }
 
-        private bool IsHitedBy(Point head)
+        private bool IsHittedBy(Point anotherPoint)
         {
-            foreach (Point point in pointsList)
-            {
-                if (point.IsPointsCoincide(head)) return true;
-            }
-
-            return false;
+            return pointsList.Any(point => point.IsCoincide(anotherPoint));
         }
     }
 }

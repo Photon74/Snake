@@ -23,7 +23,7 @@ namespace Snake
             this.gameFieldHeigth = gameFieldHeigth;
         }
 
-        public void CreateNewFood()
+        public void DrawNewFood()
         {
             X = random.Next(2, gameFieldWidth);
             Y = random.Next(2, gameFieldHeigth);

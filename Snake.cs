@@ -11,13 +11,14 @@ namespace Snake
         private Direction direction;
         private Point nextPoint = new Point(0,0,' ');
 
-        public Snake(Point headPoint, int length, Direction direction)
+        public Snake()
         {
-            this.direction = direction;
+            const int length = 4;
+            direction = Direction.Right;
             pointsList = new List<Point>();
             for (int i = 0; i < length; i++)
             {
-                Point point = new Point(headPoint);
+                Point point = new Point(4, 4, '*');
                 point.MovePoint(i, direction);
                 pointsList.Add(point);
             }
@@ -63,21 +64,19 @@ namespace Snake
         {
             if (nextPoint.X == food.X & nextPoint.Y == food.Y)
             {
-                pointsList.Add(nextPoint); //прирост длины змейки на одну точку
+                pointsList.Add(nextPoint); // Прирост длины змейки на одну точку
                 return true;
             }
-
             return false;
         }
 
-        public bool IsHitItself()
+        public bool IsHittingItself() // Врезалась ли змейка в свой хвост
         {
             Point head = pointsList.Last();
             for (int i = 0; i < pointsList.Count - 2; i++)
             {
-                if (head.IsPointsCoincide(pointsList[i])) return true;
+                if (head.IsCoincide(pointsList[i])) return true;
             }
-
             return false;
         }
 
